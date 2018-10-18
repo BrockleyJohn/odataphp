@@ -39,7 +39,7 @@ try
     {
         $args[] = '/config=' . dirname(__FILE__) . '/settings.ini'; // look for settings file if no params
     }
-	$util = new PHPSvcUtil($args);
+    $util = new PHPSvcUtil($args);
     $util->generateProxy();
     $options = $util->getOptions();
     echo "\n" . 'Done: OData Service Proxy File \'' . $options['/out_filename'] .
