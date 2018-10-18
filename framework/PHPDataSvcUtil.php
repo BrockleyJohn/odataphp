@@ -27,9 +27,14 @@ require_once 'Common/ACSUtil.php';
  */
 try
 {
-    if (isset($argv)) $args = $argv;
-	else $args = ['scriptname'];
-	if (count($args) == 1) $args[] = '/config=' . dirname(__FILE__) . '/settings.ini'; // look for settings file if no params
+    if (isset($argv)) {
+        $args = $argv;
+    } else {
+        $args = ['scriptname'];
+    }
+    if (count($args) == 1) {
+        $args[] = '/config=' . dirname(__FILE__) . '/settings.ini'; // look for settings file if no params
+    }
 	$util = new PHPSvcUtil($args);
     $util->generateProxy();
     $options = $util->getOptions();
@@ -217,7 +222,7 @@ class PHPSvcUtil
         if (!$httpRawResponse)
         {
             throw new Exception(self::$_messages['Request_Error'] .
-                                 curl_error($curlHandle).'<pre>'."\n".print_r(curl_getinfo($curlHandle),true)).'</pre>';
+                                 curl_error($curlHandle).'<pre>'."\n".print_r(curl_getinfo($curlHandle),true).'</pre>');
         }
 
         $httpResponse = HttpResponse::fromString($httpRawResponse);
