@@ -27,12 +27,16 @@ require_once 'Common/ACSUtil.php';
  */
 try
 {
-    if (isset($argv)) {
+    if (isset($argv)) 
+    {
         $args = $argv;
-    } else {
+    } 
+    else 
+    {
         $args = ['scriptname'];
     }
-    if (count($args) == 1) {
+    if (count($args) == 1) 
+    {
         $args[] = '/config=' . dirname(__FILE__) . '/settings.ini'; // look for settings file if no params
     }
 	$util = new PHPSvcUtil($args);
