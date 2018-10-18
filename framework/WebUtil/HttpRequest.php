@@ -124,9 +124,11 @@ class HttpRequest
         $this->_curlHandle = curl_init();
         curl_setopt($this->_curlHandle, CURL_HTTP_VERSION_1_1, true);
         curl_setopt($this->_curlHandle, CURLOPT_HEADER, true);
+        curl_setopt($this->_curlHandle, CURLINFO_HEADER_OUT, true);
         curl_setopt($this->_curlHandle, CURLOPT_USERAGENT,
                                         Resource::USER_AGENT);
         curl_setopt($this->_curlHandle, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($this->_curlHandle, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->_curlHandle, CURLOPT_RETURNTRANSFER,  true);
         curl_setopt($this->_curlHandle, CURLOPT_FOLLOWLOCATION,  true);
     }
@@ -387,6 +389,7 @@ class HttpRequest
     {
         $this->_finalize();
         $httpResponse = curl_exec($this->_curlHandle);
+        \EZV4\Easify_Logging::Log("OData curl request sent:\r\n" . print_r(curl_getinfo($this->_curlHandle),true) . "\r\n\r\n");
         if ($httpResponse)
         {
             if($this->_putFileHandle != null)
